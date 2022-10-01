@@ -1,100 +1,109 @@
 const { expect } = require("chai");
-const { addFive, subtractTen, sum } = require("./mathEnforcer");
+const { mathEnforcer } = require("./mathEnforcer");
+describe("mathEnforcer", () => {
+    describe("mathEnforcer.addFive(num)", () => {
+        it("should be close to 6 within 6.99", () => {
+            expect(mathEnforcer.addFive(10.001)).equal(10.001 + 5);
+        });
+        it("mathEnforcer.addFive(4) should return 9", () => {
+            expect(mathEnforcer.addFive(4)).to.equal(9);
+        });
+        it("mathEnforcer.addFive(-4) should return 1", () => {
+            expect(mathEnforcer.addFive(-4)).to.equal(1);
+        });
+        it("mathEnforcer.addFive('gosho') should return undefined", () => {
+            expect(mathEnforcer.addFive("gosho")).to.be.undefined;
+        });
+        it("mathEnforcer.addFive('5') should return undefined", () => {
+            expect(mathEnforcer.addFive("5")).to.be.undefined;
+        });
+        it("mathEnforcer.addFive([5]) should return undefined", () => {
+            expect(mathEnforcer.addFive([5])).to.be.undefined;
+        });
+        it("mathEnforcer.addFive(0) should return 5", () => {
+            expect(mathEnforcer.addFive(0)).to.equal(5);
+        });
+        it("mathEnforcer.addFive() should return undefined", () => {
+            expect(mathEnforcer.addFive()).to.be.undefined;
+        });
+        it("mathEnforcer.addFive({gosho:5}) should return undefined", () => {
+            expect(mathEnforcer.addFive({ gosho: 5 })).to.be.undefined;
+        });
+    });
 
-//ADD FIVE TESTS
-describe("Add Five Tests", () => {
-    it('Should return "undefined" if input is string', () => {
-        expect(addFive("10")).to.be.undefined;
+    describe("mathEnforcer.subtractTen(num)", () => {
+        it("mathEnforcer.subtractTen(4) should return -6", () => {
+            expect(mathEnforcer.subtractTen(4)).to.equal(-6);
+        });
+        it("mathEnforcer.subtractTen(-4) should return -14", () => {
+            expect(mathEnforcer.subtractTen(-4)).to.equal(-14);
+        });
+        it("mathEnforcer.subtractTen('gosho') should return undefined", () => {
+            expect(mathEnforcer.subtractTen("gosho")).to.be.undefined;
+        });
+        it("mathEnforcer.subtractTen(0) should return -10", () => {
+            expect(mathEnforcer.subtractTen(0)).to.equal(-10);
+        });
+        it("mathEnforcer.subtractTen(10) should return 0", () => {
+            expect(mathEnforcer.subtractTen(10)).to.equal(0);
+        });
+        it("mathEnforcer.subtractTen(5) should return -5", () => {
+            expect(mathEnforcer.subtractTen(5)).to.equal(-5);
+        });
+        it("mathEnforcer.subtractTen(10.001) should be close to 0.001", () => {
+            expect(mathEnforcer.subtractTen(10.001)).equal(10.001 - 10);
+        });
+        it("mathEnforcer.subtractTen('5') should return undefined", () => {
+            expect(mathEnforcer.subtractTen("5")).to.be.undefined;
+        });
+        it("mathEnforcer.subtractTen([5]) should return undefined", () => {
+            expect(mathEnforcer.subtractTen([5])).to.be.undefined;
+        });
+        it("mathEnforcer.subtractTen() should return undefined", () => {
+            expect(mathEnforcer.subtractTen()).to.be.undefined;
+        });
+        it("mathEnforcer.subtractTen({gosho:5}) should return undefined", () => {
+            expect(mathEnforcer.subtractTen({ gosho: 5 })).to.be.undefined;
+        });
     });
-    it('Should return "15" if input is negative', () => {
-        expect(addFive(-10)).to.be.equal(15);
-    });
-    it('Should return "6" if input is negative', () => {
-        expect(addFive(-1)).to.be.equal(6);
-    });
-    it('Should return "undefined" if input is array', () => {
-        expect(addFive([])).to.be.undefined;
-    });
-    it('Should return "undefined" if input is object', () => {
-        expect(addFive({})).to.be.undefined;
-    });
-    it('Should return "undefined" if input is function', () => {
-        expect(addFive(function gosho() {})).to.be.undefined;
-    });
-    it('Should return "6" if input is 1', () => {
-        expect(addFive(1)).to.be.equal(6);
-    });
-    it('Should return "10" if input is 5', () => {
-        expect(addFive(5)).to.be.equal(10);
-    });
-});
 
-//SUBTRACT TEN TESTS
+    describe("mathEnforcer.sum(num1,num2)", () => {
+        it("mathEnforcer.sum(2,-8) should return -6", () => {
+            expect(mathEnforcer.sum(2, -8)).to.equal(-6);
+        });
+        it("mathEnforcer.sum(2,3) should return 5", () => {
+            expect(mathEnforcer.sum(2, 3)).to.equal(5);
+        });
+        it("mathEnforcer.sum('gosho',3) should return undefined", () => {
+            expect(mathEnforcer.sum("gosho", 3)).to.be.undefined;
+        });
+        it("mathEnforcer.sum('gosho','gosho') should return undefined", () => {
+            expect(mathEnforcer.sum("gosho", "gosho")).to.be.undefined;
+        });
+        it("mathEnforcer.sum(3,'gosho') should return undefined", () => {
+            expect(mathEnforcer.sum(3, "gosho")).to.be.undefined;
+        });
 
-describe("Subtract Ten Tests", () => {
-    it('Should return "undefined" if input is string', () => {
-        expect(subtractTen("10")).to.be.undefined;
-    });
-    it('Should return "undefined" if input is array', () => {
-        expect(subtractTen([])).to.be.undefined;
-    });
-    it('Should return "undefined" if input is object', () => {
-        expect(subtractTen({})).to.be.undefined;
-    });
-    it('Should return "undefined" if input is function', () => {
-        expect(subtractTen(function gosho() {})).to.be.undefined;
-    });
-    it('Should return "-9" if input is 1', () => {
-        expect(subtractTen(1)).to.be.equal(-9);
-    });
-    it('Should return "-5" if input is 5', () => {
-        expect(subtractTen(5)).to.be.equal(-5);
-    });
-    it('Should return "10" if input is 20', () => {
-        expect(subtractTen(20)).to.be.equal(10);
-    });
-});
-
-//SUM TESTS
-
-describe("Sum Tests", () => {
-    it('Should return "undefined" if both input is string', () => {
-        expect(sum("10", "10")).to.be.undefined;
-    });
-    it('Should return "undefined" if first input is string', () => {
-        expect(sum("10", 10)).to.be.undefined;
-    });
-    it('Should return "undefined" if second input is string', () => {
-        expect(sum(10, "10")).to.be.undefined;
-    });
-    it('Should return "undefined" if first input is array', () => {
-        expect(sum([], 10)).to.be.undefined;
-    });
-    it('Should return "undefined" if second input is array', () => {
-        expect(sum(10, [])).to.be.undefined;
-    });
-    it('Should return "undefined" if first input is object', () => {
-        expect(sum({}, 10)).to.be.undefined;
-    });
-    it('Should return "undefined" if second input is object', () => {
-        expect(sum(10, {})).to.be.undefined;
-    });
-    it('Should return "undefined" if first input is function', () => {
-        expect(sum(function gosho() {}, 10)).to.be.undefined;
-    });
-    it('Should return "undefined" if second input is function', () => {
-        expect(sum(10, function gosho() {})).to.be.undefined;
-    });
-    it('Should return "3" if input is 1, 2', () => {
-        expect(sum(1, 2)).to.be.equal(3);
-    });
-    it('Should return "5" if input is -5, 10', () => {
-        expect(sum(-5, 10)).to.be.equal(5);
-    });
-    it('Should return "-5" if input is -15, 10', () => {
-        expect(sum(-15, 10)).to.be.equal(-5);
-    });
-    it('Should return "15" if input is 5, 10', () => {
-        expect(sum(5, 10)).to.be.equal(15);
+        it("mathEnforcer.sum(-5,-5) should return -10", () => {
+            expect(mathEnforcer.sum(-5, -5)).to.equal(-10);
+        });
+        it("mathEnforcer.sum([-5],[-5]) should return undefined", () => {
+            expect(mathEnforcer.sum([-5], [-5])).to.be.undefined;
+        });
+        it("mathEnforcer.sum('-5','-5') should return undefined", () => {
+            expect(mathEnforcer.sum("-5", "-5")).to.be.undefined;
+        });
+        it("mathEnforcer.sum([-5,-5]) should return undefined", () => {
+            expect(mathEnforcer.sum([-5, -5])).to.be.undefined;
+        });
+        it("mathEnforcer.sum(10.0001,1.009) should be close to 10.0019", () => {
+            expect(mathEnforcer.sum(10.0001, 0.001)).equal(10.0001 + 0.001);
+        });
+        it("mathEnforcer.sum() should return undefined", () => {
+            expect(mathEnforcer.sum()).to.be.undefined;
+        });
+        it("mathEnforcer.sum(0,0) should return undefined", () => {
+            expect(mathEnforcer.sum(0, 0)).to.equal(0);
+        });
     });
 });
