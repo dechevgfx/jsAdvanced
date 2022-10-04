@@ -1,20 +1,20 @@
-function heroInventory(array) {
-    let allHeroes = [];
-    for (const heroData of array) {
-        let [heroName, heroLevel, heroItems] = heroData.split(" / ");
-        let singleHero = {
-            name: heroName ? heroName : String,
-            level: heroLevel ? Number(heroLevel) : Number,
-            items: heroItems ? heroItems.split(", ") : [],
+function heroes() {
+    function hero(name, stamina, attack, message) {
+        return {
+            name,
+            message,
+            health: 100,
+            [stamina]: 100,
+            [attack]: function (message = "") {
+                console.log(this.message + message);
+                this[stamina] -= 1;
+            },
         };
-        allHeroes.push(singleHero);
     }
-    console.log(JSON.stringify(allHeroes));
+
+    return {
+        mage: (n) => new hero(n, "mana", `cast`, `${n} cast `),
+        fighter: (n) =>
+            new hero(n, "stamina", `fight`, `${n} slashes at the foe!`),
+    };
 }
-heroInventory([
-    "Isacc / 25 / Apple, GravityGun",
-
-    "Derek / 12 / BarrelVest, DestructionSword",
-
-    "Hes / 1 / Desolator, Sentinel, Antara",
-]);
